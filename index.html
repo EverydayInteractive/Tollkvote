@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Tollkvote</title>
+
+    <style>
+        html, body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-weight: 200;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+            *:before,
+            *:after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+        .statusbar-overlay {
+            background: #01A25F;
+            z-index: 10000;
+            height: 20px;
+            width: 100%;
+            position: fixed;
+            -webkit-backface-visibility: hidden;
+            top: 0;
+        }
+
+        .navbar {
+            height: 44px;
+            width: 100%;
+            background: #01A25F;
+            position: fixed;
+            -webkit-backface-visibility: hidden;
+            top: 20px;
+        }
+
+        .logo {
+            width: 103px;
+            margin: auto;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+            .logo span {
+                width: 103px;
+                height: 25px;
+                background: url(assets/img/logo.png) no-repeat center;
+                -webkit-background-size: 100% auto;
+                background-size: 100% auto;
+                display: block;
+                font-size: 0px;
+            }
+
+        .inner-app {
+            margin-top: 64px;
+            overflow: auto;
+        }
+
+        .toll-condition {
+            margin-top: 20px;
+            font-size: 25px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .panel {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px 15px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+            .panel .panel-row {
+                overflow: auto;
+            }
+
+            .panel > hr {
+                margin: 20px 0;
+                border: 0;
+                border-bottom: 1px dotted rgba(255, 255, 255, 0.30);
+            }
+
+        /* HELPER CLASSES */
+        span.strong {
+        font-weight: 500;
+        }
+
+        .pull-left {
+            float: left !important;
+        }
+
+        .pull-right {
+            float: right !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="statusbar-overlay"></div>
+    <div class="navbar">
+        <div class="logo">
+            <span>Tollkvote</span>
+        </div>
+    </div>
+    <div class="inner-app">
+        <div class="toll-condition">Intet å fortolle</div>
+        <div class="panel">
+            <div class="panel-row">
+                <div class="pull-left"><span class="strong">Brennevin</span> (Max 1L):</div>
+            </div>
+            <hr />
+            <div class="panel-row">
+                <div class="pull-left"><span class="strong">Tobakk</span> (200 sigaretter/250g):</div>
+            </div>
+            <hr />
+            <div class="panel-row">
+                <div class="pull-left"><span class="strong">Vin:</span></div>
+            </div>
+            <hr />
+            <div class="panel-row">
+                <div class="pull-left"><span class="strong">Øl:</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PhoneGap API JS -->
+    <script src="phonegap.js"></script>
+</body>
+</html>

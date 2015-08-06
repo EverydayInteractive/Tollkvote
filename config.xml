@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "as.everyday.tollkvote"
+    versionCode = "1"
+    version     = "1.0.0" >
+
+  <!-- versionCode is optional and Android only -->
+
+  <name>Tollkvote</name>
+
+  <description>
+    Tollkvote lar deg regne ut om du behøver å fortolle kvotevarer inn i Norge.
+  </description>
+
+  <author href="http://everyday.as" email="henrik.gundersen@everyday.as">
+    Everyday Interactive
+  </author>
+
+  <!-- Supported platforms -->
+  <gap:platform name="ios" />
+  <gap:platform name="android" />
+  <gap:platform name="winphone" />
+
+</widget>
