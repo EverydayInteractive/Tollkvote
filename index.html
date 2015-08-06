@@ -16,6 +16,7 @@
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
             margin: 0;
+            overflow: hidden;
         }
 
         body {
@@ -36,6 +37,45 @@
                 box-sizing: border-box;
             }
 
+        .app-outer {
+            overflow-x: hidden;
+        }
+
+        .app-inner {
+            -webkit-transform: scale(1.0);
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform: scale(1.0);
+            -moz-transform-origin: 50% 50%;
+            -o-transform: scale(1.0);
+            -o-transform-origin: 50% 50%;
+            -ms-transform: scale(1.0);
+            -ms-transform-origin: 50% 50%;
+            transform: scale(1.0);
+            transform-origin: 50% 50%;
+            -webkit-transition-duration: 500ms;
+            -moz-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+        }
+
+            .app-inner.popup-open {
+                -webkit-transform: scale(1.5);
+                -webkit-transform-origin: 50% 50%;
+                -moz-transform: scale(1.5);
+                -moz-transform-origin: 50% 50%;
+                -o-transform: scale(1.5);
+                -o-transform-origin: 50% 50%;
+                -ms-transform: scale(1.5);
+                -ms-transform-origin: 50% 50%;
+                transform: scale(1.5);
+                transform-origin: 50% 50%;
+                -webkit-filter: blur(7px);
+                -moz-filter: blur(7px);
+                -o-filter: blur(7px);
+                -ms-filter: blur(7px);
+                filter: blur(7px);
+            }
+
         .statusbar-overlay {
             background: #01A25F;
             z-index: 10000;
@@ -47,36 +87,50 @@
         }
 
         .navbar {
+            background: #01A25F;
+            padding: 0 8px;
+            z-index: 10000;
             height: 44px;
             width: 100%;
-            background: #01A25F;
             position: fixed;
             -webkit-backface-visibility: hidden;
             top: 20px;
+            -webkit-transition-duration: 500ms;
+            -moz-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
         }
 
-        .logo {
-            width: 103px;
-            margin: auto;
-            position: relative;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-            .logo span {
-                width: 103px;
-                height: 25px;
-                background: url(assets/img/logo.png) no-repeat center;
-                -webkit-background-size: 100% auto;
-                background-size: 100% auto;
-                display: block;
-                font-size: 0px;
+            .navbar.open {
+                transform: translate3d(0,-64px,0);
+                -webkit-transform: translate3d(0,-64px,0);
             }
 
-        .inner-app {
-            margin-top: 64px;
+        div.logo {
+            position: absolute;
+            left: 50%;
+            margin-left: -51px;
+            top: 50%;
+            margin-top: -12px;
+            width: 103px;
+            height: 25px;
+            background: url(assets/img/logo.png) no-repeat center;
+            -webkit-background-size: 100% auto;
+            background-size: 100% auto;
+            text-indent: 9999px;
+        }
+
+        .popup-button {
+            font-size: 17px;
+            font-weight: 400;
+            float: right;
+            line-height: 44px;
+            height: 44px;
+        }
+
+        .app-content {
+            padding-top: 64px;
+            padding-bottom: 40px;
             overflow: auto;
         }
 
@@ -104,9 +158,85 @@
                 border-bottom: 1px dotted rgba(255, 255, 255, 0.30);
             }
 
+        .popup {
+            background: #F5F5F5;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 20px;
+            -webkit-transition-duration: 600ms;
+            -moz-transition-duration: 600ms;
+            -o-transition-duration: 600ms;
+            transition-duration: 600ms;
+            transform: translate3d(0,100%,0);
+            -webkit-transform: translate3d(0,100%,0);
+        }
+
+            .popup.open {
+                transform: translate3d(0,0,0);
+                -webkit-transform: translate3d(0,0,0);
+            }
+
+        .popup-content {
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
+            position: absolute;
+            top: 44px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .navbar-popup {
+            height: 44px;
+            background: #01A25F;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 0 8px;
+            z-index: 99999;
+        }
+
+        .close-popup {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 44px;
+            height: 44px;
+        }
+
+        .content-block-title {
+            margin: 35px 15px 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            line-height: 1;
+            color: #6d6d72;
+        }
+
+        .content-block {
+            margin: 35px 0;
+            padding: 0 15px;
+            color: #6d6d72;
+        }
+
+        .content-block-title + .content-block {
+            margin-top: 10px;
+        }
+
+        .content-block-inner {
+            background: #fff;
+            padding: 10px 15px;
+            margin: 0 -15px;
+            border-bottom: 1px solid #c8c7cc;
+            border-top: 1px solid #c8c7cc;
+            color: #000;
+        }
+
+
         /* HELPER CLASSES */
         span.strong {
-        font-weight: 500;
+            font-weight: 500;
         }
 
         .pull-left {
@@ -119,34 +249,95 @@
     </style>
 </head>
 <body>
-    <div class="statusbar-overlay"></div>
-    <div class="navbar">
-        <div class="logo">
-            <span>Tollkvote</span>
+    <div class="app-outer">
+        <div class="statusbar-overlay"></div>
+        <div class="navbar">
+            <div class="logo">Tollkvote</div>
+            <div class="popup-button" data-trigger="popup">Info</div>
         </div>
-    </div>
-    <div class="inner-app">
-        <div class="toll-condition">Intet å fortolle</div>
-        <div class="panel">
-            <div class="panel-row">
-                <div class="pull-left"><span class="strong">Brennevin</span> (Max 1L):</div>
+        <div class="app-inner">
+            <!--            <div class="navbar">
+                <div class="logo">Tollkvote</div>
+                <div class="popup-button" data-trigger="popup">KNAPP</div>
+            </div>-->
+            <div class="app-content">
+                <div class="toll-condition">Intet å fortolle</div>
+                <div class="panel">
+                    <div class="panel-row">
+                        <div class="pull-left"><span class="strong">Brennevin</span> (Max 1L):</div>
+                    </div>
+                    <hr />
+                    <div class="panel-row">
+                        <div class="pull-left"><span class="strong">Tobakk</span> (200 sigaretter/250g):</div>
+                    </div>
+                    <hr />
+                    <div class="panel-row">
+                        <div class="pull-left"><span class="strong">Vin:</span></div>
+                    </div>
+                    <hr />
+                    <div class="panel-row">
+                        <div class="pull-left"><span class="strong">Øl:</span></div>
+                    </div>
+                </div>
             </div>
-            <hr />
-            <div class="panel-row">
-                <div class="pull-left"><span class="strong">Tobakk</span> (200 sigaretter/250g):</div>
+        </div>
+
+        <!-- POPUP -->
+        <div class="popup">
+            <div class="navbar-popup">
+                <div class="close-popup pull-right" data-trigger="popup">Tilbake</div>
             </div>
-            <hr />
-            <div class="panel-row">
-                <div class="pull-left"><span class="strong">Vin:</span></div>
-            </div>
-            <hr />
-            <div class="panel-row">
-                <div class="pull-left"><span class="strong">Øl:</span></div>
+            <div class="popup-content">
+                <div class="content-block-title">Definisjoner</div>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        <b>Brennevin:</b> over 22 % t.o.m 60 % alkohol.
+                                <br>
+                        <b>Vin:</b> over 2,5 % t.o.m 22 % alkohol.
+                                <br>
+                        <b>Øl:</b> (også sterkøl og rusbrus) over 2,5 % t.o.m 4,7 % alkohol.
+                    </div>
+                </div>
+                <div class="content-block-title">Alkohol over 60 prosent er forbudt</div>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        Alkohol med en alkoholprosent over 60 prosent er forbudt å importere.
+                    </div>
+                </div>
+                <div class="content-block-title">Aldersgrense</div>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        For å innføre øl, vin og tobakk må du være over 18 år. Skal du ta med deg brennevin og lignende over 22 prosent, må du være over 20 år.
+                    </div>
+                </div>
+                <div class="content-block-title">Verdigrensen</div>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        Alkohol- og tobakkskvoten må være innenfor verdigrensen. Hvis du har vært utenfor Norge i mer enn 24 timer, kan du ta med deg varer for inntil 6 000 norske kroner uten å betale toll og avgifter. Denne verdigrensen er den totale summen på varene du har handlet, inkludert alkohol- og tobakkskvoten.
+                                Er utenlandsoppholdet kortere, kan du ta med deg varer for 3 000 kroner toll- og avgiftsfritt. Denne verdigrensen er den totale summen på varene du har handlet.
+                    </div>
+                </div>
+                <div class="content-block-title">Større mengder enn kvoten</div>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        Det er fullt mulig å handle mer enn kvoten. Du må da fortolle varene som overstiger kvoten.
+                                <a class="external" href="http://www.toll.no/templates_TAD/Topic.aspx?id=233865&amp;epslanguage=no">Les mer på Toll.no</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <!-- PhoneGap API JS -->
     <script src="phonegap.js"></script>
+
+    <!-- jQuery (minified) -->
+    <script src="assets/js/jquery.min.js"></script>
+
+    <!-- Fastclick JS -->
+    <script src="assets/js/fastclick.js"></script>
+    <!-- App Core JS -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
