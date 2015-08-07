@@ -22,7 +22,7 @@
         body {
             background: #2ecc71;
             color: #fff;
-            position:relative; 
+            position: relative;
             height: 100vh;
         }
 
@@ -199,6 +199,17 @@
             z-index: 99999;
         }
 
+        .page-title {
+            position: absolute;
+            width: 120px;
+            left: 50%;
+            margin-left: -60px;
+            text-align: center;
+            line-height: 44px;
+            font-weight: 300;
+            font-size: 18px;
+        }
+
         .close-popup {
             font-size: 17px;
             font-weight: 400;
@@ -285,6 +296,7 @@
         <!-- POPUP -->
         <div class="popup">
             <div class="navbar-popup">
+                <div class="page-title">Informasjon</div>
                 <div class="close-popup pull-right" data-trigger="popup">Tilbake</div>
             </div>
             <div class="popup-content">
