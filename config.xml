@@ -21,5 +21,9 @@
   <gap:platform name="ios" />
   <gap:platform name="android" />
   <gap:platform name="winphone" />
+  
+  
+  <!-- Plug-ins-->
+  <gap:plugin name="org.pushandplay.cordova.apprate" />
 
 </widget>
