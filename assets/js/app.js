@@ -86,4 +86,10 @@
             $(".toll-condition").text("Intet å fortolle");
         };
     };
+
+    /*** AppRate Phonegap plugin ***/
+    AppRate.preferences.useLanguage = 'no';
+    AppRate.preferences.storeAppURL.ios = '<my_app_id>';
+    AppRate.preferences.storeAppURL.android = 'market://details?id=<package_name>';
+    AppRate.promptForRating();
 });
