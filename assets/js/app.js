@@ -21,14 +21,13 @@
     //Get state of #switch-spirits
     var changeCheckbox1 = document.querySelector('#switch-spirits');
     changeCheckbox1.onchange = function () {
-        goodsToDeclare(false);
+        calculateDeclareState();
     };
 
     //Get state of #switch-tobacco
     var changeCheckbox2 = document.querySelector('#switch-tobacco');
     changeCheckbox2.onchange = function () {
-        goodsToDeclare(true);
-        console.log(changeCheckbox2.checked);
+        calculateDeclareState();
     };
 
     /*** Powerange initializer & handler ***/
@@ -36,21 +35,44 @@
     var elem = document.querySelector('.js-range1');
     var init = new Powerange(elem, { step: 0.75, min: 0, max: 4.5, start: 0, decimal: true, hideRange: true });
 
+    wineValue = 0;
     $(".js-range1").change(function () {
-        var wineValue = this.value;
+        wineValue = this.value;
         $(".wine-state").text(wineValue + " L");
+        calculateDeclareState();
     });
 
     //Initalize beer-slider
     var elem = document.querySelector('.js-range2');
     var init = new Powerange(elem, { step: 0.5, min: 0, max: 6.5, start: 0, decimal: true, hideRange: true });
 
+    beerValue = 0;
     $(".js-range2").change(function () {
-        var beerValue = this.value;
+        beerValue = this.value;
         $(".beer-state").text(beerValue + " L");
+        calculateDeclareState();
     });
 
-    /** Calculate goodsToDeclare **/
+    /** Calculate DeclareState **/
+    function calculateDeclareState() {
+        if ((changeCheckbox1.checked && !changeCheckbox2.checked) || (changeCheckbox2.checked && !changeCheckbox1.checked)) {
+            // If tobacco OR spirits is true
+            maxWineAndBeerLiter = 5.0;
+        } else if (changeCheckbox1.checked && changeCheckbox2.checked) {
+            // If tobacco AND spirits is true
+            maxWineAndBeerLiter = 3.5;
+
+        } else {
+            // If not tobacco AND/OR spirits is true
+            maxWineAndBeerLiter = 6.5;
+        };
+
+        if (parseFloat(wineValue) + parseFloat(beerValue) > maxWineAndBeerLiter) {
+            goodsToDeclare(true);
+        } else {
+            goodsToDeclare(false);
+        };
+    };
 
 
     /*** What to call this? Use goodsToDeclare(true/false); to call function ***/
