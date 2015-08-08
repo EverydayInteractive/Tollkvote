@@ -10,6 +10,9 @@
     <title>Tollkvote</title>
 
     <style>
+        @import url(assets/css/switchery.css);
+        @import url(assets/css/powerange.css);
+
         html, body {
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-weight: 200;
@@ -24,7 +27,15 @@
             color: #fff;
             position: relative;
             height: 100vh;
+            -webkit-transition-duration: 500ms;
+            -moz-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
         }
+
+            body.goodsToDeclare {
+                background: #e74c3c;
+            }
 
         * {
             -webkit-box-sizing: border-box;
@@ -86,7 +97,12 @@
             position: fixed;
             -webkit-backface-visibility: hidden;
             top: 0;
+            -webkit-transition-duration: 500ms;
+            -moz-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
         }
+
 
         .navbar {
             background: #01A25F;
@@ -103,10 +119,14 @@
             transition-duration: 500ms;
         }
 
-            .navbar.open {
-                transform: translate3d(0,-64px,0);
-                -webkit-transform: translate3d(0,-64px,0);
-            }
+        .goodsToDeclare .statusbar-overlay, .goodsToDeclare .navbar {
+            background: #c0392b;
+        }
+
+        .navbar.open {
+            transform: translate3d(0,-64px,0);
+            -webkit-transform: translate3d(0,-64px,0);
+        }
 
         div.logo {
             position: absolute;
@@ -145,8 +165,8 @@
         .panel {
             max-width: 600px;
             margin: 40px auto;
-            padding: 20px 15px;
-            background: rgba(0, 0, 0, 0.2);
+            padding: 16px 15px;
+            background: rgba(0, 0, 0, 0.3);
         }
 
             .panel .panel-row {
@@ -154,10 +174,14 @@
             }
 
             .panel > hr {
-                margin: 20px 0;
+                margin: 16px 0;
                 border: 0;
                 border-bottom: 1px dotted rgba(255, 255, 255, 0.30);
             }
+
+        .toll-item-description {
+            line-height: 32px;
+        }
 
         .popup {
             background: #F5F5F5;
@@ -244,6 +268,10 @@
             color: #000;
         }
 
+        .range-min, .range-max {
+            display: none;
+        }
+
 
         /* HELPER CLASSES */
         span.strong {
@@ -267,27 +295,41 @@
             <div class="popup-button" data-trigger="popup">Info</div>
         </div>
         <div class="app-inner">
-            <!--            <div class="navbar">
-                <div class="logo">Tollkvote</div>
-                <div class="popup-button" data-trigger="popup">KNAPP</div>
-            </div>-->
             <div class="app-content">
                 <div class="toll-condition">Intet å fortolle</div>
                 <div class="panel">
                     <div class="panel-row">
-                        <div class="pull-left"><span class="strong">Brennevin</span> (Max 1L):</div>
+                        <div class="toll-item-description pull-left"><span class="strong">Brennevin</span> (Max 1L):</div>
+                        <div class="pull-right">
+                            <input type="checkbox" class="js-switch" id="switch-spirits" />
+                        </div>
                     </div>
                     <hr />
                     <div class="panel-row">
-                        <div class="pull-left"><span class="strong">Tobakk</span> (200 sigaretter/250g):</div>
+                        <div class="toll-item-description pull-left"><span class="strong">Tobakk</span> (200 sigaretter/250g):</div>
+                        <div class="pull-right">
+                            <input type="checkbox" class="js-switch" id="switch-tobacco" />
+                        </div>
                     </div>
                     <hr />
                     <div class="panel-row">
-                        <div class="pull-left"><span class="strong">Vin:</span></div>
+                        <div style="overflow: hidden;">
+                            <div class="pull-left"><span class="strong">Vin:</span></div>
+                            <div class="pull-right wine-state">0 L</div>
+                        </div>
+                        <div style="margin: 13px 0;">
+                            <input type="text" class="js-range1" />
+                        </div>
                     </div>
                     <hr />
                     <div class="panel-row">
-                        <div class="pull-left"><span class="strong">Øl:</span></div>
+                        <div style="overflow: hidden;">
+                            <div class="pull-left"><span class="strong">Øl:</span></div>
+                            <div class="pull-right beer-state">0 L</div>
+                        </div>
+                        <div style="margin: 13px 0;">
+                            <input type="text" class="js-range2" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -349,6 +391,14 @@
 
     <!-- Fastclick JS -->
     <script src="assets/js/fastclick.min.js"></script>
+
+    <!-- Switchery JS - iOS 7 style switche -->
+    <script src="assets/js/switchery.min.js"></script>
+
+    <!-- Powerange JS - iOS 7 style rangeslider -->
+    <script src="assets/js/powerange.min.js"></script>
+
+
     <!-- App Core JS -->
     <script src="assets/js/app.js"></script>
 </body>
